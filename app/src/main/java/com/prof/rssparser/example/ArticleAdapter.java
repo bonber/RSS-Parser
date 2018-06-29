@@ -19,7 +19,9 @@ package com.prof.rssparser.example;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -121,16 +123,28 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
                         "</style>\n" + "<style>iframe{ height: auto; width: auto;}" + "</style>\n" + content + "<img src=\""+imagen+"\" >", null, "utf-8", null);
 
-                android.support.v7.app.AlertDialog alertDialog = new android.support.v7.app.AlertDialog.Builder(mContext).create();
+                AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
                 alertDialog.setTitle(title);
                 alertDialog.setView(articleView);
-                alertDialog.setButton(android.support.v7.app.AlertDialog.BUTTON_NEUTRAL, "OK",
+                alertDialog.setCancelable(false);
+                alertDialog.setButton(android.support.v7.app.AlertDialog.BUTTON_POSITIVE, "Cerrar",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         });
+                alertDialog.setButton(android.support.v7.app.AlertDialog.BUTTON_NEUTRAL, "Compartir",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                                intent.setType("text/plain");
+                                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "asunto");//se usará por ejemplo para email
+                                intent.putExtra(Intent.EXTRA_TEXT, "contenido del mensaje");
+                                mContext.startActivity(Intent.createChooser(intent, "Compartir usando"));
+                            }
+                        });
                 alertDialog.show();
+
 
                 ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
             }
