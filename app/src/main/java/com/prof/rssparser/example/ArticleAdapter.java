@@ -112,9 +112,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
                 articleView.getSettings().setLoadWithOverviewMode(true);
 
-                String title = articles.get(viewHolder.getAdapterPosition()).getTitle();
+                final String title = articles.get(viewHolder.getAdapterPosition()).getTitle();
                 String content = articles.get(viewHolder.getAdapterPosition()).getContent();
                 String imagen = articles.get(viewHolder.getAdapterPosition()).getImage();
+                final String url =  articles.get(viewHolder.getAdapterPosition()).getLink();
 
                 articleView.getSettings().setJavaScriptEnabled(true);
                 articleView.setHorizontalScrollBarEnabled(false);
@@ -139,8 +140,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
                                 Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                                 intent.setType("text/plain");
                                 intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "asunto");//se usará por ejemplo para email
-                                intent.putExtra(Intent.EXTRA_TEXT, "contenido del mensaje");
-                                mContext.startActivity(Intent.createChooser(intent, "Compartir usando"));
+                                intent.putExtra(Intent.EXTRA_TEXT, title + "\n" + url);
+                                mContext.startActivity(Intent.createChooser(intent, "Compartir con..."));
                             }
                         });
                 alertDialog.show();
