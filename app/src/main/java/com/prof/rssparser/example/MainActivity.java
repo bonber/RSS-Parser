@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private ArticleAdapter mAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ProgressBar progressBar;
-    private String urlString = "https://www.androidauthority.com/feed";
+    private String urlString = "https://lizarrakogaztetxea.wordpress.com/feed/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
