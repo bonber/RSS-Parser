@@ -20,8 +20,10 @@ package com.prof.rssparser.example;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -185,8 +187,7 @@ public class MainActivity extends AppCompatActivity {
             android.support.v7.app.AlertDialog alertDialog = new android.support.v7.app.AlertDialog.Builder(MainActivity.this).create();
             alertDialog.setTitle(R.string.app_name);
             alertDialog.setMessage(Html.fromHtml(MainActivity.this.getString(R.string.info_text) +
-                    " <a href='http://github.com/prof18/RSS-Parser'>GitHub.</a>" +
-                    MainActivity.this.getString(R.string.author)));
+                    " <a href='https://github.com/bonber/piztu-app'>GitHub.</a>"));
             alertDialog.setButton(android.support.v7.app.AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -196,6 +197,31 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.show();
 
             ((TextView) alertDialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        }
+        if (id == R.id.action_blog) {
+            Uri uri = Uri.parse("https://lizarrakogaztetxea.wordpress.com/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+        if (id == R.id.action_facebook) {
+            Uri uri = Uri.parse("https://www.facebook.com/LizarrakoGA/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+        if (id == R.id.action_instagram) {
+            Uri uri = Uri.parse("https://www.instagram.com/lizarrapizten/");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+        if (id == R.id.action_twitter) {
+            Uri uri = Uri.parse("https://twitter.com/lizarrakogazte");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+        if (id == R.id.action_mail) {
+            Uri uri = Uri.parse("mailto:lizarrakogaztetxea@gmail.com");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
