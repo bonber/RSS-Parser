@@ -21,6 +21,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         progressBar = findViewById(R.id.progressBar);
-
+        toolbar.setTitleTextColor(Color.parseColor("#000000"));
         mRecyclerView = findViewById(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
