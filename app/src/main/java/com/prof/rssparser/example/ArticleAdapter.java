@@ -40,9 +40,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by Marco Gomiero on 12/02/2015.
- */
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
 
@@ -93,9 +90,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         if (currentArticle.getCategories() != null) {
             for (int i = 0; i < currentArticle.getCategories().size(); i++) {
                 if (i == currentArticle.getCategories().size() - 1) {
-                    categories = categories + currentArticle.getCategories().get(i);
+                    categories = "#"+categories + currentArticle.getCategories().get(i);
                 } else {
-                    categories = categories + currentArticle.getCategories().get(i) + ", ";
+                    categories = "#"+categories + currentArticle.getCategories().get(i) + ", ";
                 }
             }
         }
